@@ -21,6 +21,21 @@ window.initMap = () => {
 }
 
 /**
+ * skip google map when tabbing through the website
+ * set focus to the next focusable element
+ */
+skipMap = () => {
+  var descendants = Array.prototype.slice.call(
+    document.querySelector("#map-container").querySelectorAll("*"), 0
+  );
+  descendants.forEach(function(descendant) {
+    descendant.setAttribute('tabindex', '-1');
+  });
+
+  document.getElementById('restaurant-name').focus();
+}
+
+/**
  * Get current restaurant from page URL.
  */
 fetchRestaurantFromURL = (callback) => {
@@ -50,6 +65,7 @@ fetchRestaurantFromURL = (callback) => {
  */
 fillRestaurantHTML = (restaurant = self.restaurant) => {
   const name = document.getElementById('restaurant-name');
+  name.setAttribute('tabindex', '0');
   name.innerHTML = restaurant.name;
 
   const address = document.getElementById('restaurant-address');
@@ -97,6 +113,7 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
   const container = document.getElementById('reviews-container');
   const title = document.createElement('h2');
   title.innerHTML = 'Reviews';
+  title.setAttribute('tabindex', '0');
   container.appendChild(title);
 
   if (!reviews) {
@@ -117,17 +134,28 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
  */
 createReviewHTML = (review) => {
   const li = document.createElement('li');
-  const name = document.createElement('p');
+
+  const nameAndDate = document.createElement('p');
+  nameAndDate.className = 'name-and-date';
+  li.appendChild(nameAndDate);
+
+  const name = document.createElement('span');
   name.innerHTML = review.name;
-  li.appendChild(name);
+  name.className = 'name';
+  nameAndDate.appendChild(name);
 
-  const date = document.createElement('p');
+  const date = document.createElement('span');
   date.innerHTML = review.date;
-  li.appendChild(date);
+  date.className = 'date';
+  nameAndDate.appendChild(date);
 
-  const rating = document.createElement('p');
+  const ratingRegion = document.createElement('p');
+  li.appendChild(ratingRegion);
+
+  const rating = document.createElement('span');
   rating.innerHTML = `Rating: ${review.rating}`;
-  li.appendChild(rating);
+  rating.className = 'rating';
+  ratingRegion.appendChild(rating);
 
   const comments = document.createElement('p');
   comments.innerHTML = review.comments;

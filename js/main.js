@@ -68,6 +68,21 @@ fillCuisinesHTML = (cuisines = self.cuisines) => {
 }
 
 /**
+ * skip google map when tabbing through the website
+ * set focus to the next focusable element
+ */
+skipMap = () => {
+  var descendants = Array.prototype.slice.call(
+    document.querySelector("#map-container").querySelectorAll("*"), 0
+  );
+  descendants.forEach(function(descendant) {
+    descendant.setAttribute('tabindex', '-1');
+  });
+
+  document.querySelector("#neighborhoods-select").focus();
+}
+
+/**
  * Initialize Google map, called from HTML.
  */
 window.initMap = () => {
@@ -141,6 +156,7 @@ createRestaurantHTML = (restaurant) => {
   const image = document.createElement('img');
   image.className = 'restaurant-img';
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
+  image.alt = restaurant.name;
   li.append(image);
 
   const name = document.createElement('h1');

@@ -24,6 +24,7 @@ a {
 a:hover, a:focus {
 	color: #3397db;
 	text-decoration: none;
+	background: white;
 }
 a img{
 	border: none 0px #fff;
@@ -100,6 +101,15 @@ nav h1 a {
     color: #01447e;
     text-decoration: underline;
 }
+
+/* Add a size and margin for button */
+button {
+	margin: 1em;
+	width: 10em;
+	height: 2em;
+}
+
+
 /* ====================== Map ====================== */
 #map {
   height: 400px;
@@ -132,6 +142,12 @@ nav h1 a {
   margin: 10px;
   padding: 0 10px;
   width: 200px;
+}
+
+/* Add background color when focusing on buttons or select elements */
+button:focus,
+select:focus {
+	background: orange;
 }
 
 /* ====================== Restaurant Listing ====================== */
@@ -269,18 +285,40 @@ nav h1 a {
 }
 #reviews-list li {
   background-color: #fff;
-    border: 2px solid #f3f3f3;
+  border: 2px solid #f3f3f3;
   display: block;
   list-style-type: none;
   margin: 0 0 30px;
   overflow: hidden;
-  padding: 0 20px 20px;
+  /* padding: 0 20px 20px; */
   position: relative;
   width: 85%;
 }
 #reviews-list li p {
   margin: 0 0 10px;
+	padding: 0 20px 20px;
 }
+
+#reviews-list li .name-and-date {
+	background-color: black;
+	color: white;
+}
+
+#reviews-list li .name {
+	font-size: large;
+}
+
+#reviews-list li .date {
+	float: right;
+	font-size: medium;
+}
+
+#reviews-list li .rating {
+	background-color: orange;
+	color: white;
+	padding: 0.5em;
+}
+
 #restaurant-hours td {
   color: #666;
 }
