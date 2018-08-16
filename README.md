@@ -2,7 +2,7 @@
 
 <img src='img/demo.png' width='300px' />
 
-Restaurant review app provides a list of restaurants on the map and a user can interact with this app by clicking on a restaurant they are interested in, or narrowing down a specific region or a type of food with the filter.
+Restaurant review app provides a list of restaurants on the map and a user can interact with this app by clicking on a restaurant they are interested in, or narrow down a specific region or a type of food with the filter.
 
 This app is friendly for mobile and screen-reader users. It is also able to work offline by caching some assets with a service worker.
 
